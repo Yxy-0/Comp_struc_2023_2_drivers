@@ -1,1 +1,2 @@
-# Comp_struc_2023_2_drivers
+# Computation_Structures_2
+this is the repository to develop the course of computation strectures 
