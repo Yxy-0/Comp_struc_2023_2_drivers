@@ -35,34 +35,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := Comp_Struct_Drivers
+BUILD_ARTIFACT_NAME := comp_struct_2023_2_drivers
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-Comp_Struct_Drivers.elf \
+comp_struct_2023_2_drivers.elf \
 
 MAP_FILES += \
-Comp_Struct_Drivers.map \
+comp_struct_2023_2_drivers.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-Comp_Struct_Drivers.list \
+comp_struct_2023_2_drivers.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: Comp_Struct_Drivers.elf secondary-outputs
+main-build: comp_struct_2023_2_drivers.elf secondary-outputs
 
 # Tool invocations
-Comp_Struct_Drivers.elf Comp_Struct_Drivers.map: $(OBJS) $(USER_OBJS) C:\Users\Nico\Documents\Comp_Struct_Drivers\Drivers\ II\STM32L476RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Comp_Struct_Drivers.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Nico\Documents\Comp_Struct_Drivers\Drivers II\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Comp_Struct_Drivers.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+comp_struct_2023_2_drivers.elf comp_struct_2023_2_drivers.map: $(OBJS) $(USER_OBJS) C:\Users\yulia\Desktop\Comp_Struct_Drivers-feat-trabajo_driver\Drivers\ II\STM32L476RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "comp_struct_2023_2_drivers.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\yulia\Desktop\Comp_Struct_Drivers-feat-trabajo_driver\Drivers II\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="comp_struct_2023_2_drivers.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -71,14 +71,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-Comp_Struct_Drivers.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "Comp_Struct_Drivers.list"
+comp_struct_2023_2_drivers.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "comp_struct_2023_2_drivers.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) Comp_Struct_Drivers.elf Comp_Struct_Drivers.list Comp_Struct_Drivers.map default.size.stdout
+	-$(RM) comp_struct_2023_2_drivers.elf comp_struct_2023_2_drivers.list comp_struct_2023_2_drivers.map default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)

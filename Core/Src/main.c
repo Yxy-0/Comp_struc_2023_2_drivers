@@ -298,7 +298,7 @@ int main(void)
   ssd1306_Init();
   ssd1306_Fill(Black);
   ssd1306_SetCursor(20, 20);
-  ssd1306_WriteString("<3", Font_7x10, White);
+  ssd1306_WriteString("<3 Yxy0 <3", Font_7x10, White);
   ssd1306_UpdateScreen();
   /* USER CODE END 2 */
 
@@ -306,29 +306,29 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  // se ingresa cada vez que se pulsa un tecla del taclado.
+	  // It is entered each time a keyboard key is pressed
 	  if (key_event != 0xFF) { // check if there is a event from the EXTi callback
 	 		  uint16_t key_pressed = keypad_handler(key_event); // call the keypad handler
 	 		  if (key_pressed != 0xFF) {
 	 			  printf("Key pressed: %x\r\n", key_pressed); // print the key pressed
 
-	 			  // guarda los cuadtro digitos de la key y se presona '#' para finalizar la lectura y proceder con la verificacion.
+	 			  // save the four digits of the key and press '#' to finish reading and proceed with the verification.
 	 			  if (memory[4] != 0x0F){
 	 			  memory[count] = key_pressed;
 	 			  count = count + 1;}
 	 		  	  }
 
-	 		  	  // Validamos si la key corresponde con el año de nacimiento.
-	 		  	  // Se valida al preciconar la tecla # para completar las 5 teclas presionadas.
+	 		  	  // Validate if the key corresponds to the year of birth.
+	 		  	  // It is validated by pressing the # key to complete the 5 keys pressed.
 	 		  	  if (memory[4] == 0x0F){
-	 		  		  // Pe varifica se los valores ingresados coinciden de ser correcto se imprime Pass en la pantalla.
-	 		  		  if (memory[0] == 0x02 && memory[1] == 0x00 && memory[2] == 0x00 && memory[3] == 0x02){
+	 		  		  // It is verified if the values ​​entered match the year of birth (2001), if correct, Pass is printed on the screen.
+	 		  		  if (memory[0] == 0x02 && memory[1] == 0x00 && memory[2] == 0x00 && memory[3] == 0x01){
 	 		  			  ssd1306_Init();
 	 		  			  ssd1306_Fill(Black);
 	 		  			  ssd1306_SetCursor(20, 20);
 	 		  			  ssd1306_WriteString("Pass", Font_7x10, White);
 	 		  			  ssd1306_UpdateScreen();
-	 		  			  // caso contrario se imprime Fail en la pantalla.
+	 		  			  // Otherwise Fail is printed on the screen.
 	 		  		  } else {
 	 		  			  ssd1306_Init();
 	 		  			  ssd1306_Fill(Black);
@@ -337,25 +337,25 @@ int main(void)
 	 		  			  ssd1306_UpdateScreen();
 	 		  		  	  	  }
 	 		  	  	  }
-	 		  	  // si la quinta pulsación no es el # se marca error y requeire resetear.
+	 		  	  // If the fifth press is not the #, an error is marked and a reset is required.
 	 		  	  if (count == 5 && memory[4] != 0x0F ){
 	 		  		ssd1306_Init();
 	 		  		ssd1306_Fill(Black);
 	 		  		ssd1306_SetCursor(10, 20);
-	 		  		ssd1306_WriteString("Error - resetear ", Font_7x10, White);
+	 		  		ssd1306_WriteString("Error - Reset ", Font_7x10, White);
 	 		  		ssd1306_UpdateScreen();
 	 		  	  }
-	 		  	  // Una vez ingresados los datos de y se a verificado si es correcta o no la key presione  '*' para ingresar nuevamente una key.
+	 		  	  // Once the data has been entered and it has been verified whether the key is correct or not, press '*' to enter a key again.
 	 		  	  if (key_pressed == 0x0E){
 	 		  		  for (uint8_t i = 0; i < 5 ; i++){
 	 		  			  memory[i]= 0;
 	 		  			  count = 0;
 	 		  		  }
-	 		  		  //mostrar en la pantalla que se ingrese la key.
+	 		  		  //show on the screen that the key is entered.
 	 		  		  ssd1306_Init();
 	 		  		  ssd1306_Fill(Black);
 	 		  		  ssd1306_SetCursor(20, 20);
-	 		  		  ssd1306_WriteString("Ingrese key", Font_7x10, White);
+	 		  		  ssd1306_WriteString("Enter key", Font_7x10, White);
 	 		  		  ssd1306_UpdateScreen();
 	 		  	  }
 	 		  key_event = 0xFF; // clean the event
